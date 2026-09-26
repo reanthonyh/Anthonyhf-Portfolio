@@ -104,7 +104,13 @@
   "certificates": [
     {
       "name": "Flutter Development",
-      "date": "2025-06-01",
+      "date": "2026-06-01",
+      "issuer": "Udemy",
+      "url": "https://udemy.com"
+    },
+    {
+      "name": "English C1",
+      "date": "2023-08-14",
       "issuer": "Udemy",
       "url": "https://udemy.com"
     }
@@ -222,7 +228,8 @@
         "Integrates with RIOT GAMES APIs for real-time data",
         "Provides intuitive mobile interface for quick reference during matches"
       ],
-      "url": "https://github.com/reanthonyh/Summoner-Timer"
+      "url": "https://github.com/reanthonyh/Summoner-Timer",
+      "images": ["ST-01.webp", "ST-02.webp", "ST-03.webp"]
     },
     {
       "name": "Git Commit TUI",

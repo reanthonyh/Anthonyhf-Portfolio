@@ -6,14 +6,20 @@ interface Props {
 
 const { href, hover = true } = Astro.props;
 
-const base = "bg-umbrella-surface border border-umbrella-line p-5 transition-colors";
+const base =
+  "bg-umbrella-surface border border-umbrella-line p-5 transition-colors";
 const interactive = hover
   ? "hover:border-umbrella-green/60 hover:bg-white/5 group"
   : "";
 ---
 
 {href ? (
-  <a href={href} target="_blank" rel="noopener noreferrer" class={`${base} ${interactive} block`}>
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    class={`${base} ${interactive} block`}
+  >
     <slot />
   </a>
 ) : (

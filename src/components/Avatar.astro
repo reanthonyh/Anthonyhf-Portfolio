@@ -6,15 +6,18 @@ interface Props {
 
 const { initials, size = "md" } = Astro.props;
 
-const sizeMap = {
+const sizeMap: { [key in "sm" | "md" | "lg"]: string } = {
   sm: "w-10 h-10 text-sm",
   md: "w-20 h-20 text-3xl",
   lg: "w-24 h-24 text-4xl",
 };
+
+const selectedSize = sizeMap[size] ?? sizeMap["md"];
 ---
 
 <div
-  class={`${sizeMap[size]} border-2 border-umbrella-green/60 bg-black flex items-center justify-center font-share-tech-mono data-glow`}
+  class={`${selectedSize} border-2 border-umbrella-green/60 bg-black flex items-center justify-center font-share-tech-mono data-glow`}
 >
   {initials}
 </div>
+```

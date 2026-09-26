@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "@/layouts/Layout.astro";
 import Sidebar from "@/components/Sidebar.astro";
 import MobileHeader from "@/components/MobileHeader.astro";
@@ -282,7 +283,22 @@ const navItems = [
                 <span class="data-glow text-xs font-share-tech-mono">
                   {dateRange(proj.startDate, proj.endDate)}
                 </span>
+
                 <Highlights items={proj.highlights || []} />
+
+                {proj.images && proj.images.length > 0 && (
+                  <div class="grid gap-4 mt-4">
+                    {proj.images.map((img: string, index: number) => (
+                      <Image
+                        src={`/Anthonyhf-Portfolio/images/${img}`}
+                        alt={`${index + 1}`}
+                        width={200}
+                        height={400}
+                        class="rounded-lg hover:shadow-lg transition-shadow"
+                      />
+                    ))}
+                  </div>
+                )}
               </Card>
             ))
           }
@@ -446,8 +462,8 @@ const navItems = [
           class="flex flex-col sm:flex-row items-center justify-between gap-4"
         >
           <p class="text-xs text-umbrella-muted font-share-tech-mono">
-            &copy; {new Date().getFullYear()}
-            {basics.name}. All rights reserved.
+            {new Date().getFullYear()} &copy; {basics.name}. All rights
+            reserved.
           </p>
           <div class="flex gap-4">
             {
