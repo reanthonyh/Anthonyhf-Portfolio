@@ -6,8 +6,7 @@ import SectionHeader from "@/components/SectionHeader.astro";
 import TimelineEntry from "@/components/TimelineEntry.astro";
 import Card from "@/components/Card.astro";
 import Tag from "@/components/Tag.astro";
-import Highlights from "@/components/Highlights.astro";
-import ImageGallery from "@/components/ImageGallery.astro";
+import ProjectsSection from "@/components/projects/ProjectsSection";
 import resume from "@/assets/resume.json";
 
 const {
@@ -34,6 +33,18 @@ function formatDate(dateStr: string | null): string {
 function dateRange(start: string, end: string | null): string {
   return `${formatDate(start)} — ${formatDate(end)}`;
 }
+
+const imageBase = `${import.meta.env.BASE_URL.replace(/\/?$/, "/")}images/`;
+
+const projectCards = projects.map((proj: any, i: number) => ({
+  id: `project-${i}`,
+  name: proj.name,
+  url: proj.url ?? null,
+  dateRange: dateRange(proj.startDate, proj.endDate),
+  description: proj.description ?? "",
+  highlights: proj.highlights ?? [],
+  images: (proj.images ?? []).map((file: string) => `${imageBase}${file}`),
+}));
 
 const initials = basics.name
   .split(" ")
@@ -246,60 +257,8 @@ const navItems = [
         </div>
       </section>
 
-      <!-- Projects -->
-      <section
-        id="projects"
-        class="px-8 py-16 lg:px-16 border-t border-umbrella-line"
-      >
-        <SectionHeader label="Built" title="Projects" />
-        <div class="grid gap-6 sm:grid-cols-2">
-          {
-            projects.map((proj: any) => (
-              <Card href={proj.url || null}>
-                <div class="flex items-start justify-between mb-3">
-                  <h4 class="text-lg scan-text text-white group-hover:text-umbrella-green uppercase tracking-wide transition-colors">
-                    {proj.name}
-                  </h4>
-                  {proj.url && (
-                    <span class="text-umbrella-muted group-hover:text-umbrella-green transition-colors">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="w-4 h-4"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                        <polyline points="15 3 21 3 21 9" />
-                        <line x1="10" y1="14" x2="21" y2="3" />
-                      </svg>
-                    </span>
-                  )}
-                </div>
-                <p class="text-sm scan-text mb-3">{proj.description}</p>
-                <span class="data-glow text-xs font-share-tech-mono">
-                  {dateRange(proj.startDate, proj.endDate)}
-                </span>
-
-                <Highlights items={proj.highlights || []} />
-
-                {proj.images && proj.images.length > 0 && (
-                  <ImageGallery
-                    className="mt-4"
-                    images={proj.images}
-                    mainImageIndex={0}
-                    showThumbnails={true}
-                    thumbnailCount={4}
-                  />
-                )}
-              </Card>
-            ))
-          }
-        </div>
-      </section>
+       <!-- Projects -->
+       <ProjectsSection client:load projects={projectCards} />
 
       <!-- Awards -->
       <section

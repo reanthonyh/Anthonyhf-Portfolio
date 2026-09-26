@@ -1,15 +1,5 @@
 ---
-interface Props {
-  label: string;
-  title: string;
-}
-
-const { label, title } = Astro.props;
+import SectionHeader from "@/components/react/SectionHeader";
 ---
 
-<div class="mb-10">
-  <p class="data-glow font-share-tech-mono text-sm mb-2 tracking-wider uppercase"
-    >[ {label} ]</p
-  >
-  <h3 class="text-2xl scan-text text-white uppercase tracking-wide">{title}</h3>
-</div>
+<SectionHeader {...Astro.props} />
