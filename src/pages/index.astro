@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import Layout from "@/layouts/Layout.astro";
 import Sidebar from "@/components/Sidebar.astro";
 import MobileHeader from "@/components/MobileHeader.astro";
@@ -8,6 +7,7 @@ import TimelineEntry from "@/components/TimelineEntry.astro";
 import Card from "@/components/Card.astro";
 import Tag from "@/components/Tag.astro";
 import Highlights from "@/components/Highlights.astro";
+import ImageGallery from "@/components/ImageGallery.astro";
 import resume from "@/assets/resume.json";
 
 const {
@@ -287,17 +287,13 @@ const navItems = [
                 <Highlights items={proj.highlights || []} />
 
                 {proj.images && proj.images.length > 0 && (
-                  <div class="grid gap-4 mt-4">
-                    {proj.images.map((img: string, index: number) => (
-                      <Image
-                        src={`/Anthonyhf-Portfolio/images/${img}`}
-                        alt={`${index + 1}`}
-                        width={200}
-                        height={400}
-                        class="rounded-lg hover:shadow-lg transition-shadow"
-                      />
-                    ))}
-                  </div>
+                  <ImageGallery
+                    className="mt-4"
+                    images={proj.images}
+                    mainImageIndex={0}
+                    showThumbnails={true}
+                    thumbnailCount={4}
+                  />
                 )}
               </Card>
             ))
