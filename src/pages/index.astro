@@ -92,21 +92,15 @@ const navItems = [
       <section id="about" class="relative px-8 py-24 lg:px-16 lg:py-32">
         <div class="relative max-w-3xl">
           <div class="flex items-center gap-2 mb-4">
-            <p
-              class="data-glow font-share-tech-mono text-sm tracking-wider uppercase"
-            >
+            <p class="data-glow font-share-tech-mono text-sm tracking-wider uppercase">
               About Me
             </p>
           </div>
-          <h2
-            class="text-4xl lg:text-5xl scan-text text-white leading-tight mb-6 uppercase tracking-wide"
-          >
+          <h2 class="text-4xl lg:text-5xl scan-text text-white leading-tight mb-6 uppercase tracking-wide">
             Personal File:
             <span class="text-umbrella-green"> {basics.name}</span>
           </h2>
-          <p class="text-lg scan-text leading-relaxed mb-8">
-            {basics.summary}
-          </p>
+          <p class="text-lg scan-text leading-relaxed mb-8">{basics.summary}</p>
           <div class="flex flex-wrap gap-3">
             <a
               href={`mailto:${basics.email}`}
@@ -121,23 +115,22 @@ const navItems = [
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                ><rect width="20" height="16" x="2" y="4" rx="2"></rect><path
-                  d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg
               >
+                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
               Contact Me
             </a>
-            {
-              basics.profiles.map((p: any) => (
-                <a
-                  href={p.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 px-5 py-2.5 bg-black/60 border border-umbrella-line hover:border-umbrella-green text-umbrella-muted hover:text-white font-share-tech-mono uppercase tracking-wider text-sm transition-colors"
-                >
-                  {p.network}
-                </a>
-              ))
-            }
+            {basics.profiles.map((p: any) => (
+              <a
+                href={p.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-5 py-2.5 bg-black/60 border border-umbrella-line hover:border-umbrella-green text-umbrella-muted hover:text-white font-share-tech-mono uppercase tracking-wider text-sm transition-colors"
+              >
+                {p.network}
+              </a>
+            ))}
           </div>
         </div>
       </section>
@@ -149,39 +142,35 @@ const navItems = [
       >
         <SectionHeader label="Work" title="Experience" />
         <div class="space-y-10">
-          {
-            work.map((job: any) => (
-              <TimelineEntry
-                title={job.position}
-                subtitle={job.name}
-                subtitleUrl={job.url}
-                dateRange={dateRange(job.startDate, job.endDate)}
-                summary={job.summary}
-                highlights={job.highlights}
-              />
-            ))
-          }
+          {work.map((job: any) => (
+            <TimelineEntry
+              title={job.position}
+              subtitle={job.name}
+              subtitleUrl={job.url}
+              dateRange={dateRange(job.startDate, job.endDate)}
+              summary={job.summary}
+              highlights={job.highlights}
+            />
+          ))}
         </div>
 
-        {
-          volunteer.length > 0 && (
-            <div class="mt-16">
-              <h4 class="text-lg scan-text text-white mb-6 uppercase tracking-wide">
-                Volunteer
-              </h4>
-              <div class="space-y-10">
-                {volunteer.map((v: any) => (
-                  <TimelineEntry
-                    title={v.position}
-                    subtitle={v.organization}
-                    dateRange={dateRange(v.startDate, v.endDate)}
-                    summary={v.summary}
-                  />
-                ))}
-              </div>
+        {volunteer.length > 0 && (
+          <div class="mt-16">
+            <h4 class="text-lg scan-text text-white mb-6 uppercase tracking-wide">
+              Volunteer
+            </h4>
+            <div class="space-y-10">
+              {volunteer.map((v: any) => (
+                <TimelineEntry
+                  title={v.position}
+                  subtitle={v.organization}
+                  dateRange={dateRange(v.startDate, v.endDate)}
+                  summary={v.summary}
+                />
+              ))}
             </div>
-          )
-        }
+          </div>
+        )}
       </section>
 
       <!-- Education -->
@@ -191,40 +180,38 @@ const navItems = [
       >
         <SectionHeader label="Academic" title="Education" />
         <div class="space-y-8">
-          {
-            education.map((edu: any) => (
-              <Card>
-                <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-2">
-                  <h4 class="text-lg scan-text text-white uppercase tracking-wide">
-                    {edu.studyType} in {edu.area}
-                  </h4>
-                  <span class="data-glow text-xs font-share-tech-mono whitespace-nowrap">
-                    {dateRange(edu.startDate, edu.endDate)}
-                  </span>
+          {education.map((edu: any) => (
+            <Card>
+              <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-2">
+                <h4 class="text-lg scan-text text-white uppercase tracking-wide">
+                  {edu.studyType} in {edu.area}
+                </h4>
+                <span class="data-glow text-xs font-share-tech-mono whitespace-nowrap">
+                  {dateRange(edu.startDate, edu.endDate)}
+                </span>
+              </div>
+              <a
+                href={edu.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-sm text-umbrella-green hover:text-white transition-colors"
+              >
+                {edu.institution}
+              </a>
+              {edu.score && (
+                <p class="text-xs text-umbrella-muted mt-2">
+                  GPA: <span class="data-glow">{edu.score}</span>
+                </p>
+              )}
+              {edu.courses && edu.courses.length > 0 && (
+                <div class="flex flex-wrap gap-2 mt-3">
+                  {edu.courses.map((c: string) => (
+                    <Tag>{c}</Tag>
+                  ))}
                 </div>
-                <a
-                  href={edu.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-sm text-umbrella-green hover:text-white transition-colors"
-                >
-                  {edu.institution}
-                </a>
-                {edu.score && (
-                  <p class="text-xs text-umbrella-muted mt-2">
-                    GPA: <span class="data-glow">{edu.score}</span>
-                  </p>
-                )}
-                {edu.courses && edu.courses.length > 0 && (
-                  <div class="flex flex-wrap gap-2 mt-3">
-                    {edu.courses.map((c: string) => (
-                      <Tag>{c}</Tag>
-                    ))}
-                  </div>
-                )}
-              </Card>
-            ))
-          }
+              )}
+            </Card>
+          ))}
         </div>
       </section>
 
@@ -235,30 +222,28 @@ const navItems = [
       >
         <SectionHeader label="Expertise" title="Skills" />
         <div class="space-y-8">
-          {
-            skills.map((skill: any) => (
-              <div>
-                <div class="flex items-baseline justify-between mb-3">
-                  <h4 class="text-base scan-text text-white uppercase tracking-wide">
-                    {skill.name}
-                  </h4>
-                  <span class="data-glow text-xs font-share-tech-mono">
-                    {skill.level}
-                  </span>
-                </div>
-                <div class="flex flex-wrap gap-2">
-                  {skill.keywords.map((kw: string) => (
-                    <Tag size="md">{kw}</Tag>
-                  ))}
-                </div>
+          {skills.map((skill: any) => (
+            <div>
+              <div class="flex items-baseline justify-between mb-3">
+                <h4 class="text-base scan-text text-white uppercase tracking-wide">
+                  {skill.name}
+                </h4>
+                <span class="data-glow text-xs font-share-tech-mono">
+                  {skill.level}
+                </span>
               </div>
-            ))
-          }
+              <div class="flex flex-wrap gap-2">
+                {skill.keywords.map((kw: string) => (
+                  <Tag size="md">{kw}</Tag>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
-       <!-- Projects -->
-       <ProjectsSection client:load projects={projectCards} />
+      <!-- Projects -->
+      <ProjectsSection client:load projects={projectCards} />
 
       <!-- Awards -->
       <section
@@ -267,24 +252,22 @@ const navItems = [
       >
         <SectionHeader label="Recognition" title="Awards" />
         <div class="space-y-4">
-          {
-            awards.map((award: any) => (
-              <Card>
-                <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1">
-                  <h4 class="text-base scan-text text-white uppercase tracking-wide">
-                    {award.title}
-                  </h4>
-                  <span class="data-glow text-xs font-share-tech-mono whitespace-nowrap">
-                    {formatDate(award.date)}
-                  </span>
-                </div>
-                <p class="text-sm text-umbrella-green">{award.awarder}</p>
-                {award.summary && (
-                  <p class="text-sm scan-text mt-2">{award.summary}</p>
-                )}
-              </Card>
-            ))
-          }
+          {awards.map((award: any) => (
+            <Card>
+              <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1">
+                <h4 class="text-base scan-text text-white uppercase tracking-wide">
+                  {award.title}
+                </h4>
+                <span class="data-glow text-xs font-share-tech-mono whitespace-nowrap">
+                  {formatDate(award.date)}
+                </span>
+              </div>
+              <p class="text-sm text-umbrella-green">{award.awarder}</p>
+              {award.summary && (
+                <p class="text-sm scan-text mt-2">{award.summary}</p>
+              )}
+            </Card>
+          ))}
         </div>
       </section>
 
@@ -295,19 +278,17 @@ const navItems = [
       >
         <SectionHeader label="Credentials" title="Certificates" />
         <div class="grid gap-4 sm:grid-cols-2">
-          {
-            certificates.map((cert: any) => (
-              <Card href={cert.url}>
-                <h4 class="text-base scan-text text-white group-hover:text-umbrella-green uppercase tracking-wide transition-colors">
-                  {cert.name}
-                </h4>
-                <p class="text-sm text-umbrella-muted mt-1">{cert.issuer}</p>
-                <span class="data-glow text-xs font-share-tech-mono mt-2 block">
-                  {formatDate(cert.date)}
-                </span>
-              </Card>
-            ))
-          }
+          {certificates.map((cert: any) => (
+            <Card href={cert.url}>
+              <h4 class="text-base scan-text text-white group-hover:text-umbrella-green uppercase tracking-wide transition-colors">
+                {cert.name}
+              </h4>
+              <p class="text-sm text-umbrella-muted mt-1">{cert.issuer}</p>
+              <span class="data-glow text-xs font-share-tech-mono mt-2 block">
+                {formatDate(cert.date)}
+              </span>
+            </Card>
+          ))}
         </div>
       </section>
 
@@ -318,24 +299,22 @@ const navItems = [
       >
         <SectionHeader label="Published" title="Publications" />
         <div class="space-y-4">
-          {
-            publications.map((pub: any) => (
-              <Card href={pub.url}>
-                <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1">
-                  <h4 class="text-base scan-text text-white group-hover:text-umbrella-green uppercase tracking-wide transition-colors">
-                    {pub.name}
-                  </h4>
-                  <span class="data-glow text-xs font-share-tech-mono whitespace-nowrap">
-                    {formatDate(pub.releaseDate)}
-                  </span>
-                </div>
-                <p class="text-sm text-umbrella-green">{pub.publisher}</p>
-                {pub.summary && (
-                  <p class="text-sm scan-text mt-2">{pub.summary}</p>
-                )}
-              </Card>
-            ))
-          }
+          {publications.map((pub: any) => (
+            <Card href={pub.url}>
+              <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1">
+                <h4 class="text-base scan-text text-white group-hover:text-umbrella-green uppercase tracking-wide transition-colors">
+                  {pub.name}
+                </h4>
+                <span class="data-glow text-xs font-share-tech-mono whitespace-nowrap">
+                  {formatDate(pub.releaseDate)}
+                </span>
+              </div>
+              <p class="text-sm text-umbrella-green">{pub.publisher}</p>
+              {pub.summary && (
+                <p class="text-sm scan-text mt-2">{pub.summary}</p>
+              )}
+            </Card>
+          ))}
         </div>
       </section>
 
@@ -348,96 +327,85 @@ const navItems = [
           <div>
             <SectionHeader label="Communication" title="Languages" />
             <div class="space-y-4">
-              {
-                languages.map((lang: any) => (
-                  <div class="flex items-center justify-between p-4 bg-umbrella-surface border border-umbrella-line hover:border-umbrella-green/50 transition-colors">
-                    <span class="text-base scan-text text-white uppercase tracking-wide font-medium">
-                      {lang.language}
-                    </span>
-                    <span class="data-glow text-xs font-share-tech-mono">
-                      {lang.fluency}
-                    </span>
-                  </div>
-                ))
-              }
+              {languages.map((lang: any) => (
+                <div class="flex items-center justify-between p-4 bg-umbrella-surface border border-umbrella-line hover:border-umbrella-green/50 transition-colors">
+                  <span class="text-base scan-text text-white uppercase tracking-wide font-medium">
+                    {lang.language}
+                  </span>
+                  <span class="data-glow text-xs font-share-tech-mono">
+                    {lang.fluency}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
 
           <div id="interests">
             <SectionHeader label="Beyond Code" title="Interests" />
             <div class="space-y-4">
-              {
-                interests.map((interest: any) => (
-                  <Card>
-                    <h4 class="text-base scan-text text-white uppercase tracking-wide font-medium mb-2">
-                      {interest.name}
-                    </h4>
-                    <div class="flex flex-wrap gap-2">
-                      {interest.keywords.map((kw: string) => (
-                        <Tag>{kw}</Tag>
-                      ))}
-                    </div>
-                  </Card>
-                ))
-              }
+              {interests.map((interest: any) => (
+                <Card>
+                  <h4 class="text-base scan-text text-white uppercase tracking-wide font-medium mb-2">
+                    {interest.name}
+                  </h4>
+                  <div class="flex flex-wrap gap-2">
+                    {interest.keywords.map((kw: string) => (
+                      <Tag>{kw}</Tag>
+                    ))}
+                  </div>
+                </Card>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
       <!-- References -->
-      {
-        references.length > 0 && (
-          <section
-            id="references"
-            class="px-8 py-16 lg:px-16 border-t border-umbrella-line"
-          >
-            <SectionHeader label="Endorsed By" title="References" />
-            <div class="grid gap-4 sm:grid-cols-2">
-              {references.map((ref: any) => (
-                <Card hover={false}>
-                  <h4 class="text-base scan-text text-white uppercase tracking-wide">
-                    {ref.name}
-                  </h4>
-                  {ref.reference && (
-                    <p class="text-sm scan-text mt-2 italic">
-                      "{ref.reference}"
-                    </p>
-                  )}
-                </Card>
-              ))}
-            </div>
-          </section>
-        )
-      }
+      {references.length > 0 && (
+        <section
+          id="references"
+          class="px-8 py-16 lg:px-16 border-t border-umbrella-line"
+        >
+          <SectionHeader label="Endorsed By" title="References" />
+          <div class="grid gap-4 sm:grid-cols-2">
+            {references.map((ref: any) => (
+              <Card hover={false}>
+                <h4 class="text-base scan-text text-white uppercase tracking-wide">
+                  {ref.name}
+                </h4>
+                {ref.reference && (
+                  <p class="text-sm scan-text mt-2 italic">"{ref.reference}"</p>
+                )}
+              </Card>
+            ))}
+          </div>
+        </section>
+      )}
 
       <!-- Footer -->
       <footer class="px-8 py-8 lg:px-16 border-t border-umbrella-line">
-        <div
-          class="flex flex-col sm:flex-row items-center justify-between gap-4"
-        >
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
           <p class="text-xs text-umbrella-muted font-share-tech-mono">
             {new Date().getFullYear()} &copy; {basics.name}. All rights
             reserved.
           </p>
           <div class="flex gap-4">
-            {
-              basics.profiles.map((p: any) => (
-                <a
-                  href={p.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-xs text-umbrella-muted hover:text-umbrella-green font-share-tech-mono uppercase tracking-wider transition-colors"
-                >
-                  {p.network}
-                </a>
-              ))
-            }
+            {basics.profiles.map((p: any) => (
+              <a
+                href={p.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-xs text-umbrella-muted hover:text-umbrella-green font-share-tech-mono uppercase tracking-wider transition-colors"
+              >
+                {p.network}
+              </a>
+            ))}
             <a
               href={`mailto:${basics.email}`}
               class="text-xs text-umbrella-muted hover:text-umbrella-green font-share-tech-mono uppercase tracking-wider transition-colors"
-              >Email</a
             >
+              Email
+            </a>
           </div>
         </div>
       </footer>

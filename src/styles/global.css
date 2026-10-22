@@ -120,6 +120,15 @@
   color: #ffffff;
 }
 
+/* Hide scrollbar to prevent margin on right due to classic scrollbar */
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+
 html {
   scroll-behavior: smooth;
 }
